@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { leerDB, guardarDB } from '@/lib/db';
+import { COOKIE_ADMIN } from '@/lib/constantes';
 import type { Tutor } from '@/lib/types';
 
 const NIVELES = ['junior', 'intermedio', 'avanzado', 'experto'];
@@ -55,10 +56,23 @@ function validarTutor(body: unknown) {
   };
 }
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   const db = await leerDB();
+  const sesion = req.cookies.get(COOKIE_ADMIN)?.value;
+
+  // Vista pública (estudiante): solo las materias para sugerencias,
+  // sin exponer datos de los tutores.
+  if (!sesion) {
+    const materias = Array.from(
+      new Set(db.tutores.flatMap((t) => t.materias.map((m) => m.trim()))),
+    ).sort();
+    return NextResponse.json({ materias });
+  }
+
+  // Vista coordinador: lista completa con carga actual.
   const tutores = db.tutores.map((t) => ({
     ...t,
+  
     asignacionesActivas: db.asignaciones.filter((a) => a.tutorId === t.id).length,
   }));
   return NextResponse.json(tutores);

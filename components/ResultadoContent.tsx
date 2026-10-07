@@ -74,12 +74,27 @@ export default function ResultadoContent({
 
   if (match.motivoRechazo) {
     return (
-      <div className="card border-rose-800 bg-rose-950/20 p-8 text-center">
-        <h2 className="text-xl font-bold">Sin tutores compatibles</h2>
-        <p className="mx-auto mt-3 max-w-xl text-slate-300">{match.motivoRechazo}</p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Link href="/solicitud" className="btn">Nueva solicitud</Link>
-          <Link href="/tutores" className="btn-secondary">Ver tutores</Link>
+      <div className="space-y-4">
+        <div className="card border-rose-800 bg-rose-950/20 p-8 text-center">
+          <div className="flex flex-wrap justify-center gap-2">
+            <span className="rounded-full bg-rose-900/60 px-3 py-1 text-xs font-medium text-rose-300">
+              Sin tutor disponible
+            </span>
+            {solicitud.horarioAjustado && (
+              <span className="rounded-full bg-amber-900/60 px-3 py-1 text-xs font-medium text-amber-300">
+                Horario ajustado
+              </span>
+            )}
+          </div>
+          <h2 className="mt-3 text-xl font-bold">Sin tutores compatibles</h2>
+          <p className="mx-auto mt-3 max-w-xl text-slate-300">
+            {match.motivoRechazo}
+          </p>
+        </div>
+        <div className="flex justify-center gap-3">
+          <Link href="/historial" className="btn-secondary">
+            Volver al historial
+          </Link>
         </div>
       </div>
     );
@@ -103,6 +118,11 @@ export default function ResultadoContent({
         {asignacion && (
           <span className="mt-3 inline-block rounded-full bg-emerald-900/60 px-3 py-1 text-xs font-medium text-emerald-300">
             Ya asignada a {asignacion.tutorNombre} (score {asignacion.score})
+          </span>
+        )}
+        {solicitud.horarioAjustado && (
+          <span className="mt-3 inline-block rounded-full bg-amber-900/60 px-3 py-1 text-xs font-medium text-amber-300">
+            Horario ajustado
           </span>
         )}
       </section>

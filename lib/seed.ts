@@ -1,7 +1,7 @@
 import type { Asignacion, DB, Solicitud, Tutor } from './types';
 
 /**
- * Datos de ejemplo: 8 tutores variados, 3 solicitudes y 2 asignaciones
+ * Datos de ejemplo: 8 tutores variados, 4 solicitudes y 2 asignaciones
  * (para que el balanceo de carga y el historial sean visibles en la demo).
  */
 export function crearSeed(): DB {
@@ -148,6 +148,17 @@ export function crearSeed(): DB {
       preferencias: { modalidad: 'presencial', prefiereExperto: false },
       creadaEn: ahora,
       asignacionId: null,
+      horarioAjustado: true,
+    },
+    {
+      id: 's-4',
+      estudiante: 'Valentina Ríos',
+      materia: 'Biología Molecular',
+      bloques: [{ dia: 'Lunes', inicio: 10, fin: 12 }],
+      preferencias: { modalidad: 'cualquiera', prefiereExperto: false },
+      creadaEn: ahora,
+      asignacionId: null,
+      horarioAjustado: false,
     },
   ];
 

@@ -48,6 +48,8 @@ export interface Solicitud {
   preferencias: PreferenciasEstudiante;
   creadaEn: string;
   asignacionId: string | null;
+  /** Marca cuando el estudiante ajustó su horario tras no encontrar disponibilidad. */
+  horarioAjustado?: boolean;
 }
 
 export interface DesgloseScore {
@@ -89,4 +91,17 @@ export interface DB {
   tutores: Tutor[];
   solicitudes: Solicitud[];
   asignaciones: Asignacion[];
+}
+
+export interface AlternativaHorario {
+  dia: DiaSemana;
+  inicio: number;
+  fin: number;
+  modalidad: Modalidad;
+}
+
+export interface DisponibilidadRespuesta {
+  disponible: boolean;
+  motivo?: 'sin-materia' | 'sin-horario';
+  alternativas: AlternativaHorario[];
 }

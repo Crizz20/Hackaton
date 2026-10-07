@@ -57,6 +57,7 @@ function validarSolicitud(body: unknown): ValidacionSolicitud {
         modalidad: modalidad as Modalidad | 'cualquiera',
         prefiereExperto: Boolean(p.prefiereExperto),
       },
+      horarioAjustado: Boolean(b.horarioAjustado),
     },
   };
 }
