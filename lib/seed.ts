@@ -19,7 +19,7 @@ export function crearSeed(): DB {
         { dia: 'Jueves', inicio: 9, fin: 12 },
       ],
       aniosExperiencia: 6,
-      nivel: 'experta',
+      nivel: 'experto',
       modalidad: 'ambos',
     },
     {
@@ -45,7 +45,7 @@ export function crearSeed(): DB {
         { dia: 'Sábado', inicio: 10, fin: 14 },
       ],
       aniosExperiencia: 4,
-      nivel: 'avanzada',
+      nivel: 'avanzado',
       modalidad: 'presencial',
     },
     {

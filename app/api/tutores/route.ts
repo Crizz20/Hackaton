@@ -72,10 +72,10 @@ export async function POST(req: NextRequest) {
   }
 
   const db = await leerDB();
-  const tutor: Tutor = {
-    ...v.tutor,
-    id: `t-${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`,
-  };
+  const tutor = {
+  ...v.tutor,
+  id: `t-${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`,
+} as Tutor;
   db.tutores.push(tutor);
   await guardarDB(db);
 
