@@ -4,8 +4,17 @@ node_modules
 out
 
 # env
-.env*.local
 .env
+.env.local
+.env*.local
+
+# logs
+*.log
+npm-debug.log*
 
 # runtime data (se genera desde el seed en lib/seed.ts)
 data/db.json
+
+# system files
+.DS_Store
+Thumbs.db
