@@ -1,0 +1,11 @@
+# dependencies
+node_modules
+.next
+out
+
+# env
+.env*.local
+.env
+
+# runtime data (se genera desde el seed en lib/seed.ts)
+data/db.json
